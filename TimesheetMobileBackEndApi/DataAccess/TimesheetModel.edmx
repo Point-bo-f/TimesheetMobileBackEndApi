@@ -62,11 +62,11 @@
           <Property Name="StartTime" Type="datetime" />
           <Property Name="StopTime" Type="datetime" />
           <Property Name="Comments" Type="nvarchar" MaxLength="2000" />
-          <Property Name="WorkComplete" Type="bit" />
+          <Property Name="WorkComplete" Type="bit" Nullable="false" />
           <Property Name="CreatedAt" Type="datetime" />
           <Property Name="LastModifiedAt" Type="datetime" />
           <Property Name="DeletedAt " Type="datetime" />
-          <Property Name="Active" Type="bit" />
+          <Property Name="Active" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="WorkAssignments">
           <Key>
@@ -77,14 +77,14 @@
           <Property Name="Title" Type="nvarchar" MaxLength="200" />
           <Property Name="Description" Type="nvarchar" MaxLength="2000" />
           <Property Name="Deadline" Type="datetime" />
-          <Property Name="InProgress" Type="bit" />
+          <Property Name="InProgress" Type="date" Nullable="false" />
           <Property Name="InProgressAt" Type="datetime" />
-          <Property Name="Completed " Type="bit" />
+          <Property Name="Completed " Type="bit" Nullable="false" />
           <Property Name="CompletedAt" Type="datetime" />
           <Property Name="CreatedAt" Type="datetime" />
           <Property Name="LastModifiedAt" Type="datetime" />
           <Property Name="DeletedAt" Type="datetime" />
-          <Property Name="Active" Type="bit" />
+          <Property Name="Active" Type="bit" Nullable="false" />
         </EntityType>
         <Association Name="FK_Employees_Contractors">
           <End Role="Contractors" Type="Self.Contractors" Multiplicity="0..1" />
@@ -257,11 +257,11 @@
           <Property Name="StartTime" Type="DateTime" Precision="3" />
           <Property Name="StopTime" Type="DateTime" Precision="3" />
           <Property Name="Comments" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
-          <Property Name="WorkComplete" Type="Boolean" />
+          <Property Name="WorkComplete" Type="Boolean" Nullable="false" />
           <Property Name="CreatedAt" Type="DateTime" Precision="3" />
           <Property Name="LastModifiedAt" Type="DateTime" Precision="3" />
           <Property Name="DeletedAt_" Type="DateTime" Precision="3" />
-          <Property Name="Active" Type="Boolean" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Contractors" Relationship="Self.FK_Timesheet_Contractors" FromRole="Timesheet" ToRole="Contractors" />
           <NavigationProperty Name="Customers" Relationship="Self.FK_Timesheet_Customers" FromRole="Timesheet" ToRole="Customers" />
           <NavigationProperty Name="Employees" Relationship="Self.FK_Timesheet_Employees" FromRole="Timesheet" ToRole="Employees" />
@@ -276,14 +276,14 @@
           <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
           <Property Name="Deadline" Type="DateTime" Precision="3" />
-          <Property Name="InProgress" Type="Boolean" />
+          <Property Name="InProgress" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="InProgressAt" Type="DateTime" Precision="3" />
-          <Property Name="Completed_" Type="Boolean" />
+          <Property Name="Completed_" Type="Boolean" Nullable="false" />
           <Property Name="CompletedAt" Type="DateTime" Precision="3" />
           <Property Name="CreatedAt" Type="DateTime" Precision="3" />
           <Property Name="LastModifiedAt" Type="DateTime" Precision="3" />
           <Property Name="DeletedAt" Type="DateTime" Precision="3" />
-          <Property Name="Active" Type="Boolean" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Customers" Relationship="Self.FK_WorkAssignments_Customers" FromRole="WorkAssignments" ToRole="Customers" />
           <NavigationProperty Name="Timesheet" Relationship="Self.FK_Timesheet_WorkAssignments" FromRole="WorkAssignments" ToRole="Timesheet" />
         </EntityType>

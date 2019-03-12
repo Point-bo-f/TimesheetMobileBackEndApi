@@ -25,14 +25,14 @@ namespace TimesheetMobileBackEndApi.DataAccess
         public string Title { get; set; }
         public string Description { get; set; }
         public Nullable<System.DateTime> Deadline { get; set; }
-        public Nullable<bool> InProgress { get; set; }
+        public System.DateTime InProgress { get; set; }
         public Nullable<System.DateTime> InProgressAt { get; set; }
-        public Nullable<bool> Completed_ { get; set; }
+        public bool Completed_ { get; set; }
         public Nullable<System.DateTime> CompletedAt { get; set; }
         public Nullable<System.DateTime> CreatedAt { get; set; }
         public Nullable<System.DateTime> LastModifiedAt { get; set; }
         public Nullable<System.DateTime> DeletedAt { get; set; }
-        public Nullable<bool> Active { get; set; }
+        public bool Active { get; set; }
     
         public virtual Customers Customers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

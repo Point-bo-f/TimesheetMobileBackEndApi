@@ -10,8 +10,10 @@ namespace TimesheetMobileBackEndApi.Controllers
 {
     public class EmployeeController : ApiController
     {
-        public string [] GetAll()
+        public string[] GetAll()
+
         {
+
             string[] employeeNames = null;
             TimesheetMobileEntities entities = new TimesheetMobileEntities();
             try
