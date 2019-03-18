@@ -4,7 +4,7 @@
     ViewBag.Title = "Timesheets";
 }
 
-<h2>Index</h2>
+<h2>Timesheets</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -13,14 +13,7 @@
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Id_Timesheet)
-        </th>
-        @*<td>
-            @Html.DisplayFor(model => model.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(model => model.LastName)
-        </td>*@
-
+        </th>      
         <th>
             @Html.DisplayNameFor(model => model.StartTime)
         </th>
@@ -50,16 +43,9 @@
 
 @foreach (var item in Model) {
     <tr>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
         <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-        </td>*@
-        @*<td>
-            @Html.DisplayFor(modelItem => item.Id_WorkAssignment)
-        </td>*@
-
+            @Html.DisplayFor(modelItem => item.Id_Timesheet)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.StartTime)
         </td>
