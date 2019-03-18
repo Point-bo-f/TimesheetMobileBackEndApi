@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<TimesheetMobileBackEndApi.ViewModels.TimesheetsViewModel>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Timesheets";
 }
 
 <h2>Index</h2>
@@ -11,6 +11,16 @@
 </p>
 <table class="table">
     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id_Timesheet)
+        </th>
+        @*<td>
+            @Html.DisplayFor(model => model.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.LastName)
+        </td>*@
+
         <th>
             @Html.DisplayNameFor(model => model.StartTime)
         </th>
@@ -34,12 +44,22 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Active)
-        </th>        
+        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>*@
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Id_WorkAssignment)
+        </td>*@
+
         <td>
             @Html.DisplayFor(modelItem => item.StartTime)
         </td>
@@ -64,11 +84,11 @@
         <td>
             @Html.DisplayFor(modelItem => item.Active)
         </td>
-       
+
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id_Timesheet }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id_Timesheet }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id_Timesheet })
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id_Timesheet }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Id_Timesheet }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id_Timesheet })
         </td>
     </tr>
 }

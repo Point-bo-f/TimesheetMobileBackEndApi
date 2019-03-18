@@ -20,6 +20,7 @@ namespace TimesheetMobileBackEndApi.ViewModels
         public DateTime LastModifiedAt { get; set; }
         public DateTime DeletedAt_ { get; set; }
         public bool Active { get; set; }
-
+        public string LastName { get; internal set; }
+        public string FirstName { get; internal set; }
     }
 }

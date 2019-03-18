@@ -11,8 +11,7 @@ namespace TimesheetMobileBackEndApi.Controllers
 {
     public class ReportsController : Controller
     {
-        //private object timesheet;
-
+              
         // GET: Reports
         public ActionResult HoursPerWorkAssignment()
         {
@@ -89,6 +88,7 @@ namespace TimesheetMobileBackEndApi.Controllers
 
         public ActionResult HoursPerWorkAssignmentAsExcel2()
 
+
         {
             StringBuilder csv = new StringBuilder();
 
@@ -98,7 +98,7 @@ namespace TimesheetMobileBackEndApi.Controllers
             {
                 DateTime today = DateTime.Today;
                 DateTime tomorrow = today.AddDays(30);
-
+                
                 // haetaan kaikki kuluvan päivän tuntikirjaukset
                 List<Timesheet> allTimesheetsToday = (from ts in entities.Timesheet
                                                       where (ts.StartTime > today) &&
@@ -106,10 +106,12 @@ namespace TimesheetMobileBackEndApi.Controllers
                                                       (ts.WorkComplete == true)
                                                       select ts).ToList();
 
+
+
                 foreach (Timesheet timesheet in allTimesheetsToday)
                 {
                     csv.AppendLine(timesheet.Id_Employee + ";" +
-                        timesheet.StartTime + ";" + timesheet.StopTime + ";" + timesheet.Comments + ";");
+                        timesheet.StartTime + ";" + timesheet.StopTime + ";" +  timesheet.Comments + ";");
                 }
             }
             finally

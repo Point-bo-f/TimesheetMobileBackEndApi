@@ -33,5 +33,6 @@ namespace TimesheetMobileBackEndApi.DataAccess
         public virtual Employees Employees { get; set; }
         public virtual WorkAssignments WorkAssignments { get; set; }
         public DateTime DeletedAt { get; internal set; }
+        
     }
 }
