@@ -16,6 +16,10 @@ namespace TimesheetMobileBackEndApi.ViewModels
         public DateTime StopTime { get; set; }
 
         public string Comments { get; set; }
-     
+
+        public DateTime dateFrom { get; set; }
+        public DateTime dateTo { get; set; }
+
+
     }
 }

@@ -7,11 +7,16 @@ using System.Web.Mvc;
 using TimesheetMobileBackEndApi.DataAccess;
 using TimesheetMobileBackEndApi.ViewModels;
 
+
+
 namespace TimesheetMobileBackEndApi.Controllers
 {
+    
+
+
     public class ReportsController : Controller
     {
-              
+        
         // GET: Reports
         public ActionResult HoursPerWorkAssignment()
         {
@@ -85,7 +90,7 @@ namespace TimesheetMobileBackEndApi.Controllers
             return File(buffer, "text/csv", "Työtunnit.csv"); //MIME csv -tietotyyppi, tiedoston nimi
         }
 
-
+        
         public ActionResult HoursPerWorkAssignmentAsExcel2()
 
 
@@ -122,7 +127,49 @@ namespace TimesheetMobileBackEndApi.Controllers
             byte[] buffer = Encoding.UTF8.GetBytes(csv.ToString());
             return File(buffer, "text/csv", "Työtunnit2.csv");
         }
+        
+        [HttpPost]
+        public ActionResult HoursPerWorkAssignmentAsExcel3(DateTime dateFrom, DateTime dateTo)
+        {
+            HoursPerWorkAssignmentModel dates = new HoursPerWorkAssignmentModel();
+            dates.dateFrom = dateFrom;
+            dates.dateTo = dateTo;
+            
+        
+                 
 
+     
+        StringBuilder csv = new StringBuilder();
+
+            // luodaan CSV-muotoinen tiedosto
+            TimesheetMobileEntities entities = new TimesheetMobileEntities();
+            try
+            {
+
+
+                // haetaan kaikki kuluvan päivän tuntikirjaukset
+                List<Timesheet> allTimesheetsTime = (from ts in entities.Timesheet
+                                                     where (ts.StartTime > dateFrom) &&
+                                                     (ts.StartTime < dateTo) &&
+                                                     (ts.WorkComplete == true)
+                                                     select ts).ToList();
+
+
+
+                foreach (Timesheet timesheet in allTimesheetsTime)
+                {
+                    csv.AppendLine(timesheet.Id_Employee + ";" +
+                        timesheet.StartTime + ";" + timesheet.StopTime + ";" + timesheet.Comments + ";");
+                }
+            }
+            finally
+            {
+                entities.Dispose();
+            }
+            //Palautetaan CSV-tiedot selaimelle
+            byte[] buffer = Encoding.UTF8.GetBytes(csv.ToString());
+            return File(buffer, "text/csv", "Työtunnit3.csv");
+        }
     }
-}
-    
+    }
+

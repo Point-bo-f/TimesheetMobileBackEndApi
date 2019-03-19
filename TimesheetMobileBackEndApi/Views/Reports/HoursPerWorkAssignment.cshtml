@@ -3,15 +3,44 @@
 @{
     ViewBag.Title = "HoursPerWorkAssignment";
 }
-
+<script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
 <h2>HoursPerWorkAssignment</h2>
+<form id="date-range-form" action="@Url.Action("HoursPerWorkAssignmentAsExcel3", "Reports")" method="post">
+    <label for="from">From</label>
+    <input type="text" id="from" name="dateFrom">
+    <label for="to">to</label>
+    <input type="text" id="to" name="dateTo">
+    <input type='submit' value='Export to Excel' />
+</form>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
+<script>
+    $(function () {
+        $("#from").datepicker({
+            defaultDate: "+1w",
+            changeMonth: true,
+            numberOfMonths: 1,
+            onClose: function (selectedDate) {
+                $("#to").datepicker("option", "minDate", selectedDate);
+
+            }
+        });
+        $("#to").datepicker({
+            defaultDate: "+1w",
+            changeMonth: true,
+            numberOfMonths: 1,
+            onClose: function (selectedDate) {
+                $("#from").datepicker("option", "maxDate", selectedDate);
+
+            },
+        });
+    });
+</script>
+
+@Html.ActionLink("Create New", "Create")
 </p>
 
-<a href="~/Reports/HoursPerWorkAssignmentAsExcel" class="w3-btn w3-large">Export to Excel</a>
-<a href="~/Reports/HoursPerWorkAssignmentAsExcel2" class="w3-btn w3-large">Export Hours Per Work Assignment to Excel</a>
+<a href="~/Reports/HoursPerWorkAssignmentAsExcel" class="w3-btn w3-large">Test</a>
+<a href="~/Reports/HoursPerWorkAssignmentAsExcel2" class="w3-btn w3-large">Export todays assignments to Excel</a>
 
 <table class="table">
     <tr>
@@ -39,35 +68,36 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Id_WorkAssignment)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.WorkAssignmentName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TotalHours)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.WorkComplete)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StartTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StopTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Comments)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_WorkAssignment)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WorkAssignmentName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalHours)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WorkComplete)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StopTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Comments)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
 
 </table>

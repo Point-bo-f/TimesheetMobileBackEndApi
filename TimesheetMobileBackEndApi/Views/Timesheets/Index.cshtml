@@ -13,7 +13,7 @@
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Id_Timesheet)
-        </th>      
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.StartTime)
         </th>
@@ -41,42 +41,43 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Id_Timesheet)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StartTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StopTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Comments)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.WorkComplete)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedAt)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastModifiedAt)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DeletedAt_)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Active)
-        </td>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_Timesheet)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StopTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Comments)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WorkComplete)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedAt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastModifiedAt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeletedAt_)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Active)
+            </td>
 
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.Id_Timesheet }) |
-            @Html.ActionLink("Details", "Details", new { id = item.Id_Timesheet }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.Id_Timesheet })
-        </td>
-    </tr>
-}
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id_Timesheet }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id_Timesheet }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id_Timesheet })
+            </td>
+        </tr>
+    }
 
 </table>
