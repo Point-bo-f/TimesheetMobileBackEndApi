@@ -3,8 +3,13 @@
 @{
     ViewBag.Title = "HoursPerWorkAssignment";
 }
-<script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+
+
+<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
 <h2>HoursPerWorkAssignment</h2>
+
+@section scripts{
+
 <form id="date-range-form" action="@Url.Action("HoursPerWorkAssignmentAsExcel3", "Reports")" method="post">
     <label for="from">From</label>
     <input type="text" id="from" name="dateFrom">
@@ -12,22 +17,24 @@
     <input type="text" id="to" name="dateTo">
     <input type='submit' value='Export to Excel' />
 </form>
-
+<script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
 <script>
     $(function () {
         $("#from").datepicker({
+            dateFormat : "dd.mm.yyyy"
             defaultDate: "+1w",
-            changeMonth: true,
-            numberOfMonths: 1,
+            changeMonth: true,            
+            numberOfMonths: 1,            
             onClose: function (selectedDate) {
                 $("#to").datepicker("option", "minDate", selectedDate);
 
             }
         });
         $("#to").datepicker({
+            dateFormat : "dd.mm.yyyy"
             defaultDate: "+1w",
-            changeMonth: true,
-            numberOfMonths: 1,
+            changeMonth: true,            
+            numberOfMonths: 1,            
             onClose: function (selectedDate) {
                 $("#from").datepicker("option", "maxDate", selectedDate);
 
@@ -101,3 +108,4 @@
     }
 
 </table>
+}
