@@ -155,12 +155,13 @@ namespace TimesheetMobileBackEndApi.Controllers
                                                      select ts).ToList();
 
 
-
-                foreach (Timesheet timesheet in allTimesheetsTime)
-                {
-                    csv.AppendLine(timesheet.Id_Employee + ";" +
-                        timesheet.StartTime + ";" + timesheet.StopTime + ";" + timesheet.Comments + ";");
-                }
+                
+                    foreach (Timesheet timesheet in allTimesheetsTime)
+                    {
+                        csv.AppendLine(timesheet.Id_Employee + ";" +
+                            timesheet.StartTime + ";" + timesheet.StopTime + ";"  + timesheet.Comments + ";");
+                    }
+                
             }
             finally
             {
