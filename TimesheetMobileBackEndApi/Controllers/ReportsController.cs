@@ -116,7 +116,7 @@ namespace TimesheetMobileBackEndApi.Controllers
                 foreach (Timesheet timesheet in allTimesheetsToday)
                 {
                     csv.AppendLine(timesheet.Id_Employee + ";" +
-                        timesheet.StartTime + ";" + timesheet.StopTime + ";" +  timesheet.Comments + ";");
+                        timesheet.StartTime + ";" + timesheet.StopTime + ";" + timesheet.Comments + ";");
                 }
             }
             finally
@@ -154,14 +154,26 @@ namespace TimesheetMobileBackEndApi.Controllers
                                                      (ts.WorkComplete == true)
                                                      select ts).ToList();
 
+               
+                //ryhmitellään kirjaukset tehtävittäin ja lasketaan kestot
+                List<HoursPerWorkAssignmentModel> model = new List<HoursPerWorkAssignmentModel>();
 
-                
-                    foreach (Timesheet timesheet in allTimesheetsTime)
+                foreach (Timesheet timesheet in allTimesheetsTime)
+                {
+                    int assignmentId = timesheet.Id_WorkAssignment.Value;
+                    HoursPerWorkAssignmentModel existing = model.Where(
+                        m => m.Id_WorkAssignment == assignmentId).FirstOrDefault();
+
+                    if (existing != null)
                     {
-                        csv.AppendLine(timesheet.Id_Employee + ";" +
-                            timesheet.StartTime + ";" + timesheet.StopTime + ";"  + timesheet.Comments + ";");
+                        existing.TotalHours += (timesheet.StopTime.Value - timesheet.StartTime.Value).TotalHours;
                     }
-                
+                    foreach (Timesheet timesheets in allTimesheetsTime)
+                    {
+                        csv.AppendLine(timesheets.Id_WorkAssignment + ";" + timesheets.Id_Employee + ";" +
+                            timesheets.StartTime + ";" + timesheets.StopTime + ";" + (timesheets.StopTime.Value -timesheets.StartTime.Value).TotalHours + ";" + timesheets.Comments + ";");
+                    }
+                }
             }
             finally
             {
