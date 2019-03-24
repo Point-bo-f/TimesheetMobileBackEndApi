@@ -10,67 +10,75 @@
 
 @section scripts{
     <script src="~/Scripts/Chart.js"></script>
-        <script>
-            var myChart = null;
-            var chartOptions = {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
-                }
-            };
-            function alustaGraafi() {
-                var ctx = document.getElementById('myChart').getContext('2d');
-                myChart = new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: [],
-                        datasets: [{
-                            label: '# of Votes',
-                            data: [],
-                            backgroundColor: [
-                                'rgba(255, 99, 132, 0.2)',
-                                'rgba(54, 162, 235, 0.2)',
-                                'rgba(255, 206, 86, 0.2)',
-                                'rgba(75, 192, 192, 0.2)',
-                                'rgba(153, 102, 255, 0.2)',
-                                'rgba(255, 159, 64, 0.2)'
-                            ],
-                            borderColor: [
-                                'rgba(255, 99, 132, 1)',
-                                'rgba(54, 162, 235, 1)',
-                                'rgba(255, 206, 86, 1)',
-                                'rgba(75, 192, 192, 1)',
-                                'rgba(153, 102, 255, 1)',
-                                'rgba(255, 159, 64, 1)'
-                            ],
-                            borderWidth: 1
-                        }]
-                    },
-                    options: chartOptions
-                });
-            
+    <script>
+        var myChart = null;
+        var chartOptions = {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
             }
-        $(function () {
-            //sivun alustus
-            alustaGraafi();
-            $.get("/reports/GetTimesheetCounts", function (data) {
-                alert("Data haettu");
+        };
+        function alustaGraafi() {
+            var ctx = document.getElementById('myChart').getContext('2d');
+            myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: '# of Votes',
+                        data: [],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: chartOptions
+            });
 
+        }
+        function lataaDataPalvelimelta(url) {
+            $.get(url, function (data) {
                 myChart.config.data.datasets[0].data = data.Counts;
                 myChart.config.data.labels = data.Labels;
                 myChart.update();
-
-                myChart.Bar(data.Counts, chartOptions);
-                alert("Kaavio alustettu");
-
-
             });
+        }
+
+        $(function () {
+            // sivun alustus
+            alustaGraafi();
+            lataaDataPalvelimelta("/reports/GetTimesheetCounts");
+
+            $("#showOnlyCompletedRecords").change(function () {
+                var selected = $("#showOnlyCompletedRecords").is(":checked");
+
+                var url = "/reports/GetTimesheetCounts";
+                if (selected) {
+                    url += "?onlyComplete=1"
+                }
+                lataaDataPalvelimelta(url);
+            })
         });
+        
     </script>
-    
+
 
     <form id="date-range-form" action="@Url.Action("HoursPerWorkAssignmentAsExcel3", "Reports")" method="post">
         <label for="from">From</label>
@@ -106,7 +114,7 @@
     </script>
 
     @Html.ActionLink("Create New", "Create")
-    
+
 
     <a href="~/Reports/HoursPerWorkAssignmentAsExcel" class="w3-btn w3-large">Test</a>
     <a href="~/Reports/HoursPerWorkAssignmentAsExcel2" class="w3-btn w3-large">Export todays assignments to Excel</a>
@@ -172,7 +180,7 @@
     </table>
     <p></p>
     <p></p>
-
-    <canvas id="myChart" width="400" height="200"></canvas>
+    <input id="showOnlyCompletedRecords" type="checkbox" />Show Only Completed Records
+    <canvas id="myChart" width="400" height="100"></canvas>
 }
 
