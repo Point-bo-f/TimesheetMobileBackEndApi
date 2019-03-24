@@ -155,19 +155,8 @@ namespace TimesheetMobileBackEndApi.Controllers
                                                      select ts).ToList();
 
                
-                //ryhmitellään kirjaukset tehtävittäin ja lasketaan kestot
-                List<HoursPerWorkAssignmentModel> model = new List<HoursPerWorkAssignmentModel>();
-
-                foreach (Timesheet timesheet in allTimesheetsTime)
-                {
-                    int assignmentId = timesheet.Id_WorkAssignment.Value;
-                    HoursPerWorkAssignmentModel existing = model.Where(
-                        m => m.Id_WorkAssignment == assignmentId).FirstOrDefault();
-
-                    if (existing != null)
-                    {
-                        existing.TotalHours += (timesheet.StopTime.Value - timesheet.StartTime.Value).TotalHours;
-                    }
+                               {
+                   
                     foreach (Timesheet timesheets in allTimesheetsTime)
                     {
                         csv.AppendLine(timesheets.Id_WorkAssignment + ";" + timesheets.Id_Employee + ";" +
