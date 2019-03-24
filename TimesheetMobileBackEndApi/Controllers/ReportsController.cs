@@ -183,6 +183,41 @@ namespace TimesheetMobileBackEndApi.Controllers
             byte[] buffer = Encoding.UTF8.GetBytes(csv.ToString());
             return File(buffer, "text/csv", "Työtunnit3.csv");
         }
+
+        public ActionResult GetTimesheetCounts(string onlyComplete)
+        {
+            ReportChartDataViewModel model = new ReportChartDataViewModel();
+
+            TimesheetMobileEntities entities = new TimesheetMobileEntities();
+            try
+            {
+                model.Labels = (from wa in entities.WorkAssignments
+                                orderby wa.Id_WorkAssignment
+                                select wa.Title).ToArray();
+
+                if (onlyComplete == "1")
+                {
+                    model.Counts = (from ts in entities.Timesheet
+                                    where (ts.WorkComplete == true)
+                                    orderby ts.Id_WorkAssignment
+                                    group ts by ts.Id_WorkAssignment into grp
+                                    select grp.Count()).ToArray();
+
+                }
+                else
+                {
+                    model.Counts = (from ts in entities.Timesheet                                    
+                                    orderby ts.Id_WorkAssignment
+                                    group ts by ts.Id_WorkAssignment into grp
+                                    select grp.Count()).ToArray();
+                }
+            }
+            finally
+            {
+                entities.Dispose();
+            }
+            return Json(model, JsonRequestBehavior.AllowGet);
+        }
     }
     }
 
