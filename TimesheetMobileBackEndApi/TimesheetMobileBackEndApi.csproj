@@ -260,6 +260,7 @@
     </Content>
     <None Include="Properties\PublishProfiles\TimesheetMobileBackEndApi - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\DataTables\dataTables.bootstrap.css" />
     <Content Include="Scripts\DataTables\dataTables.bootstrap.js" />
     <Content Include="Scripts\DataTables\datatables.css" />
