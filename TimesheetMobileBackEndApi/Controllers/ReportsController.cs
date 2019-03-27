@@ -154,13 +154,19 @@ namespace TimesheetMobileBackEndApi.Controllers
                                                      (ts.WorkComplete == true)
                                                      select ts).ToList();
 
-               
-                               {
-                   
-                    foreach (Timesheet timesheets in allTimesheetsTime)
+
+                {
+                    
                     {
-                        csv.AppendLine(timesheets.Id_WorkAssignment + ";" + timesheets.Id_Employee + ";" +
-                            timesheets.StartTime + ";" + timesheets.StopTime + ";" + (timesheets.StopTime.Value -timesheets.StartTime.Value).TotalHours + ";" + timesheets.Comments + ";");
+                        csv.AppendLine("Id_WorkAssignment" + ";" + "Id_Employee" + ";" + "StartTime" + ";" + "StopTime" + ";" + "TotalHours" + ";" + "Comments" + ";");
+
+
+                        foreach (Timesheet timesheet in allTimesheetsTime)
+                        {
+
+                            csv.AppendLine(timesheet.Id_WorkAssignment + ";" + timesheet.Id_Employee + ";" +
+                                timesheet.StartTime + ";" + timesheet.StopTime + ";" + (timesheet.StopTime.Value - timesheet.StartTime.Value).TotalHours + ";" + timesheet.Comments + ";");
+                        }
                     }
                 }
             }
