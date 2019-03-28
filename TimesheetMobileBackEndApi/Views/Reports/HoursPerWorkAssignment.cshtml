@@ -3,12 +3,66 @@
 @{
     ViewBag.Title = "HoursPerWorkAssignment";
 }
-
 <link href="~/Scripts/StyleSheet1.css" rel="stylesheet" />
 <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
 <h2>HoursPerWorkAssignment</h2>
+<h3>
+
+    <form id="date-range-form" action="@Url.Action("HoursPerWorkAssignmentAsExcel3", "Reports")" method="post">
+        <label for="from">From</label>
+        <input type="text" id="from" name="dateFrom">
+        <label for="to">to</label>
+        <input type="text" id="to" name="dateTo">
+        <input type='submit' class="w3-btn w3-large" value='Export to Excel' />
+    </form>
 
 @section scripts{
+
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    <script>
+        $(function () {
+            $("#from").datepicker({
+                dateFormat: "yy-mm-dd",
+                defaultDate: "+1w",
+                changeMonth: true,
+                numberOfMonths: 1,
+                onClose: function (selectedDate) {
+                    $("#to").datepicker("option", "minDate", selectedDate);
+
+                }
+            });
+            $("#to").datepicker({
+                dateFormat: "yy-mm-dd",
+                defaultDate: "+1w",
+                changeMonth: true,
+                numberOfMonths: 1,
+                onClose: function (selectedDate) {
+                    $("#from").datepicker("option", "maxDate", selectedDate);
+
+                },
+            });
+        });
+    </script>
+    </h3>
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <style>
+            tr:nth-child(odd) {
+                background: #CCC;
+            }
+
+            tr:nth-child(even) {
+                background: rgb(244, 214, 70);
+            }
+        </style>
+    </head>
+
+
+
+
+
+
     <script src="~/Scripts/Chart.js"></script>
     <script>
         var myChart = null;
@@ -80,57 +134,13 @@
     </script>
 
 
-    <form id="date-range-form" action="@Url.Action("HoursPerWorkAssignmentAsExcel3", "Reports")" method="post">
-        <label for="from">From</label>
-        <input type="text" id="from" name="dateFrom">
-        <label for="to">to</label>
-        <input type="text" id="to" name="dateTo">
-        <input type='submit' class="w3-btn w3-large" value='Export to Excel' />
-    </form>
-    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
-    <script>
-        $(function () {
-            $("#from").datepicker({
-                dateFormat: "yy-mm-dd",
-                defaultDate: "+1w",
-                changeMonth: true,
-                numberOfMonths: 1,
-                onClose: function (selectedDate) {
-                    $("#to").datepicker("option", "minDate", selectedDate);
-
-                }
-            });
-            $("#to").datepicker({
-                dateFormat: "yy-mm-dd",
-                defaultDate: "+1w",
-                changeMonth: true,
-                numberOfMonths: 1,
-                onClose: function (selectedDate) {
-                    $("#from").datepicker("option", "maxDate", selectedDate);
-
-                },
-            });
-        });
-    </script>
 
     @*@Html.ActionLink("Create New", "Create")*@
 
 }
 
 
-<!DOCTYPE html>
-<html>
-<head>
-    <style>
-        tr:nth-child(odd) {
-            background: #CCC;
-        }
 
-        tr:nth-child(even) {
-            background: #FFF;
-        }
-    </style>
-</head>
 <a href="~/Reports/HoursPerWorkAssignmentAsExcel" class="w3-btn w3-large">Test</a>
 <a href="~/Reports/HoursPerWorkAssignmentAsExcel2" class="w3-btn w3-large">Export todays assignments to Excel</a>
 
@@ -185,9 +195,9 @@
                 @Html.DisplayFor(modelItem => item.Comments)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
             </td>
         </tr>
     }
