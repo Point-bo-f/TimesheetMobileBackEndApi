@@ -1,0 +1,11 @@
+﻿body {
+}
+
+
+tr: nth-child(2) {
+    background: #CCC
+}
+
+tr:nth-child(odd) {
+    background: #FFF
+}

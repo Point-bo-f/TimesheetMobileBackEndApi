@@ -24,8 +24,8 @@ namespace TimesheetMobileBackEndApi.Controllers
 
             try
             {
-                DateTime today = DateTime.Today.AddDays(0);
-                DateTime tomorrow = today.AddDays(1);
+                DateTime today = DateTime.Today.AddDays(-100);                
+                DateTime tomorrow = today.AddDays(101);
                
                 //haetaan kaikki kuluvan päivän tuntikirjaukset
 

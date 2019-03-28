@@ -4,7 +4,7 @@
     ViewBag.Title = "HoursPerWorkAssignment";
 }
 
-
+<link href="~/Scripts/StyleSheet1.css" rel="stylesheet" />
 <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
 <h2>HoursPerWorkAssignment</h2>
 
@@ -76,7 +76,7 @@
                 lataaDataPalvelimelta(url);
             })
         });
-        
+
     </script>
 
 
@@ -115,72 +115,87 @@
 
     @*@Html.ActionLink("Create New", "Create")*@
 
-
-    <a href="~/Reports/HoursPerWorkAssignmentAsExcel" class="w3-btn w3-large">Test</a>
-    <a href="~/Reports/HoursPerWorkAssignmentAsExcel2" class="w3-btn w3-large">Export todays assignments to Excel</a>
-
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Id_WorkAssignment)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.WorkAssignmentName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TotalHours)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.WorkComplete)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.StartTime)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.StopTime)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Comments)
-            </th>
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Id_WorkAssignment)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.WorkAssignmentName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TotalHours)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.WorkComplete)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.StartTime)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.StopTime)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Comments)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-                </td>
-            </tr>
-        }
-
-    </table>
-    <p></p>
-    <p></p>
-    <input id="showOnlyCompletedRecords" type="checkbox" />Show Only Completed Records
-    <canvas id="myChart" width="400" height="100"></canvas>
 }
 
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        tr:nth-child(odd) {
+            background: #CCC;
+        }
+
+        tr:nth-child(even) {
+            background: #FFF;
+        }
+    </style>
+</head>
+<a href="~/Reports/HoursPerWorkAssignmentAsExcel" class="w3-btn w3-large">Test</a>
+<a href="~/Reports/HoursPerWorkAssignmentAsExcel2" class="w3-btn w3-large">Export todays assignments to Excel</a>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id_WorkAssignment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WorkAssignmentName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalHours)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WorkComplete)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StopTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Comments)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_WorkAssignment)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WorkAssignmentName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalHours)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WorkComplete)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StopTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Comments)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
+
+</table>
+<p></p>
+<p></p>
+<input id="showOnlyCompletedRecords" type="checkbox" />Show Only Completed Records
+<canvas id="myChart" width="400" height="100"></canvas>
+}
+</html>
