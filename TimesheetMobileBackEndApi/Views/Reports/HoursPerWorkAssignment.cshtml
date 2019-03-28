@@ -7,44 +7,45 @@
 <link href="~/Scripts/StyleSheet1.css" rel="stylesheet" />
 <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
 <h2>HoursPerWorkAssignment</h2>
-<h4>
-
-    <form id="date-range-form" action="@Url.Action("HoursPerWorkAssignmentAsExcel3", "Reports")" method="post">
-        <label for="from">From</label>
-        <input type="text" id="from" name="dateFrom">
-        <label for="to">to</label>
-        <input type="text" id="to" name="dateTo">
-        <input type='submit' class="w3-btn w3-large" value='Export to Excel' />
-    </form>
-    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
-    <script>
-
-        $(function () {
-            $("#from").datepicker({
-                dateFormat: "yy-mm-dd",
-                defaultDate: "+1w",
-                changeMonth: true,
-                numberOfMonths: 1,
-                onClose: function (selectedDate) {
-                    $("#to").datepicker("option", "minDate", selectedDate);
-
-                }
-            });
-            $("#to").datepicker({
-                dateFormat: "yy-mm-dd",
-                defaultDate: "+1w",
-                changeMonth: true,
-                numberOfMonths: 1,
-                onClose: function (selectedDate) {
-                    $("#from").datepicker("option", "maxDate", selectedDate);
-
-                },
-            });
-        });
-    </script>
-</h4>
-
 @section scripts{
+    <h4>
+
+        <form id="date-range-form" action="@Url.Action("HoursPerWorkAssignmentAsExcel3", "Reports")" method="post">
+            <label for="from">From</label>
+            <input type="text" id="from" name="dateFrom">
+            <label for="to">to</label>
+            <input type="text" id="to" name="dateTo">
+            <input type='submit' class="w3-btn w3-large" value='Export to Excel' />
+        </form>
+        <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+        <script>
+
+
+            $(function () {
+                $("#from").datepicker({
+                    dateFormat: "yy-mm-dd",
+                    defaultDate: "+1w",
+                    changeMonth: true,
+                    numberOfMonths: 1,
+                    onClose: function (selectedDate) {
+                        $("#to").datepicker("option", "minDate", selectedDate);
+
+                    }
+                });
+                $("#to").datepicker({
+                    dateFormat: "yy-mm-dd",
+                    defaultDate: "+1w",
+                    changeMonth: true,
+                    numberOfMonths: 1,
+                    onClose: function (selectedDate) {
+                        $("#from").datepicker("option", "maxDate", selectedDate);
+
+                    },
+                });
+            });
+        </script>
+    </h4>
+
     <script src="~/Scripts/Chart.js"></script>
     <script>
         var myChart = null;
