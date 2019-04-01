@@ -1,0 +1,80 @@
+﻿@media screen and (min-width: 480px) {
+    #wrap {
+        width: 960px;
+        margin: 0 auto;
+        float: left;
+    }
+
+    div.background {
+        background-image: url('../Images/jaatausta.jpg');
+        /*border: 2px solid black;*/
+        /*margin: 0 auto;*/
+        /*width: 1080px;*/
+        height: 100%;
+        width: 100%;
+        background-repeat: no-repeat;
+    }
+
+    headerown, footerown {
+        padding: 20px;
+        background: #999;
+        display: block;
+    }
+
+    /*//Ensimmäisen version tavoite: a. div one vasemmalle, kokonaisleveys 680px b. div two oikealle, leveys loput,
+        //siis 960 - 680 = 280 c. väliin tulee jäädä 20px "gutter"*/
+    #one {
+        padding: 20px;
+        background: #efefef;
+        float: left;
+        width: 640px;
+        opacity: 0.5;
+    }
+
+    /*//Tee div two marginaalia vasemmalle siten että saat palstojen väliin sen 20px gutterin*/
+    #two {
+        padding: 20px;
+        background: #ccc;
+        margin-left: 700px;
+    }
+
+    /*//Muista, että floatit on "kliirattava".
+        Tässä varmistetaan se, että footer on aina palstojen alapuolella, eikä pääse vuotamaan ylös rinnalle.*/
+    footerown {
+        clear: both;
+        display: block;
+    }
+
+    h2 {
+        color: darkgrey;
+    }
+
+    h1, h2, h3 {
+        /*color: red;
+            background: yellow;*/
+    }
+
+    .important {
+        color: red;
+    }
+
+    .last {
+        font-family: Verdana;
+    }
+
+    h1, h2, h3, h4 {
+        voice-family: male;
+        richness: 80;
+        cue-before: url("beep.au")
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+
+    /*[class*="col-"] {
+            float: left;
+            padding: 15px;
+        }*/
+}
